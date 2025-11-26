@@ -1,4 +1,6 @@
 #pragma once
+/// @file
+/// @brief AtoMVM: Tiny Erlang VM
 
 /// @defgroup main main
 /// @{
