@@ -3,10 +3,10 @@
 
 ```erlang
 % empty module for c(lib/none) test
--module(empty).
--export([none/0]).
+-module(empty).    % attribute
+-export([none/0]). % attribute
 
-none() ->
+none() ->          % function declaration
     ok.
 
 % compile in erl shell:
