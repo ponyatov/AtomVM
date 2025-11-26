@@ -1,11 +1,21 @@
+# `AtomVM`
+## Tiny Erlang VM
+
+(c) Davide Bettio <<davide@uninstall.it>>
+
+### embedded fork
+
+(c) Dmitry Ponyatov <<dponyatov@gmail.com>> 2025
+
+github: https://github.com/ponyatov/AtomVM/tree/dponyatov
+
+===========
+
 <!---
   Copyright 2017-2025 Davide Bettio <davide@uninstall.it>
 
   SPDX-License-Identifier: Apache-2.0 OR LGPL-2.1-or-later
 -->
-
-AtomVM
-===========
 
 Brings [Erlang](https://www.erlang.org/), [Elixir](https://elixir-lang.org/) and other functional
 languages to really small systems.

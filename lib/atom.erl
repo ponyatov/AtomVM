@@ -1,0 +1,2 @@
+-module(atom).
+-export([]).

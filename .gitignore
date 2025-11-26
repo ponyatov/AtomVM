@@ -28,7 +28,7 @@ src/platforms/esp32/dependencies.lock
 !src/platforms/esp32/components/libatomvm/
 !src/platforms/esp32/components/libatomvm/**
 .idea/**
-.vscode/**
 .DS_Store
 .cache
 .clang-tidy
+!.gitignore
