@@ -37,12 +37,13 @@ tmp/linux/%.lex.cpp: src/%.lex
 tmp/linux/%.yacc.cpp: src/%.yacc
 	bison -o $@ $<
 
-lib/%.S: lib/%.erl
-	erlc -o lib -S $<
+lib/$(APP).S: lib/$(APP).erl Makefile
+	erlc +no_debug_info -o lib -S $<
 
 .PHONY: doc
 doc:
-	rsync -r $(HOME)/metadoc/$(APP)/ doc/$(APP)/
+	rsync -r $(HOME)/metadoc/$(APP)/ doc/$(APP)/ && git add doc/$(APP)
+	rsync -r $(HOME)/metadoc/erl/    doc/erl/    && git add doc/erl
 
 .PHONY: doxy
 doxy: .doxygen doc/DoxygenLayout.xml doc/erlang.png

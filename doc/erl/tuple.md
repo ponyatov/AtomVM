@@ -1,0 +1,3 @@
+# tuple
+
+[[Rust/tuple|tuple]]

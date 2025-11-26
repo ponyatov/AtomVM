@@ -31,6 +31,7 @@ include(version)  # binary files naming by version & git branch/hash
 include(src)      # scan project for source code files
 include(syntax)   # parser generators (flex,yacc/bison,ragel,lemon,..)
 
+include(erlang)   # Erlang jigs
 # find_package(Dialyzer)
 # find_package(Erlang)
 # find_package(Elixir)
@@ -50,7 +51,10 @@ add_executable(${CMAKE_PROJECT_NAME}
     ${S}  ${LD}         # embedded/lowlevel
     ${CP} ${HP}         # parsers
     ${DATA}             # precompiled binary data (bytecode,..)
+    ${INI}              # init/config files & scripts
 )
+
+set_source_files_properties(${INI} PROPERTIES HEADER_FILE_ONLY TRUE)
 
 include(install) # target install
 

@@ -1,0 +1,4 @@
+```json
+		// Erlang
+		"pgourlain.erlang",
+```
