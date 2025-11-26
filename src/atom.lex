@@ -17,6 +17,8 @@
 "["             { yylval.c = yytext[0]; return LQ; }
 "]"             { yylval.c = yytext[0]; return RQ; }
 
+"module"        { yylval.s = new std::string(yytext); return MODULE; }
+
 [a-zA-Z_0-9]+   { yylval.s = new std::string(yytext); return ATOM; }
 
 .               { yyerror(yytext); }
