@@ -1,5 +1,11 @@
-APP = atom
-# $(notdir $(CURDIR))
+APP     = $(notdir $(CURDIR))
+APP     = atom
+REL     = $(shell git rev-parse --short=4    HEAD)
+BRANCH  = $(shell git rev-parse --abbrev-ref HEAD)
+NOW     = $(shell date +%y%m%d)
+PEPS    = E26,E302,E305,E401,E402,E701,E702
+HW      = pc
+BINFILE = $(APP)_$(HW)_$(BRANCH)_$(NOW)
 
 CWD = $(CURDIR)
 BIN = $(CWD)/bin
@@ -10,27 +16,25 @@ SRC = $(CWD)/src
 TMP = $(CWD)/tmp
 REF = $(CWD)/ref
 
-BINFILE = $(BIN)/$(APP)
-
 H = $(wildcard inc/*.h*)
 C = $(wildcard src/*.c*)
-HP = tmp/$(APP).yacc.hpp
-CP = tmp/$(APP).yacc.cpp tmp/$(APP).lex.cpp
+HP = tmp/linux/$(APP).yacc.hpp
+CP = tmp/linux/$(APP).yacc.cpp tmp/linux/$(APP).lex.cpp
 E = $(wildcard lib/*.erl)
 S = $(subst .erl,.S,$(E))
 
-CFLAGS += -std=c++23 -Iinc -Itmp
+CFLAGS += -std=c++23 -Iinc -Itmp/linux
 
 .PHONY: all run
-all: $(BINFILE) $(S)
-run: $(BINFILE) $(S)
+all: bin/$(BINFILE) $(S)
+run: bin/$(BINFILE) $(S)
 	$^
 
-$(BINFILE): $(C) $(H) $(CP) $(HP)
+bin/$(BINFILE): $(C) $(H) $(CP) $(HP)
 	$(CXX) $(CFLAGS) -o $@ $(C) $(CP) $(L)
-tmp/%.lex.cpp: src/%.lex
+tmp/linux/%.lex.cpp: src/%.lex
 	flex -o $@ $<
-tmp/%.yacc.cpp: src/%.yacc
+tmp/linux/%.yacc.cpp: src/%.yacc
 	bison -o $@ $<
 
 lib/%.S: lib/%.erl
