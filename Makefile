@@ -14,6 +14,8 @@ BINFILE = $(BIN)/$(APP)
 
 H = $(wildcard inc/*.h*)
 C = $(wildcard src/*.c*)
+HP = tmp/$(APP).yacc.hpp
+CP = tmp/$(APP).yacc.cpp tmp/$(APP).lex.cpp
 E = $(wildcard lib/*.erl)
 S = $(subst .erl,.S,$(E))
 
@@ -26,6 +28,10 @@ run: $(BINFILE) $(S)
 
 $(BINFILE): $(C) $(H) $(CP) $(HP)
 	$(CXX) $(CFLAGS) -o $@ $(C) $(CP) $(L)
+tmp/%.lex.cpp: src/%.lex
+	flex -o $@ $<
+tmp/%.yacc.cpp: src/%.yacc
+	bison -o $@ $<
 
 lib/%.S: lib/%.erl
 	erlc -o lib -S $<
